@@ -12,10 +12,10 @@
 start(_StartType, _StartArgs) ->
     {ok, Pid} = observer_example_sup:start_link(),
     lists:foreach(
-        fun(_) ->
-            {ok, _} = supervisor:start_child(Pid, [])
+        fun(I) ->
+            {ok, _} = supervisor:start_child(Pid, [I])
         end,
-        lists:seq(1, 5)
+      lists:seq(1, 10)
     ),
     {ok, Pid}.
 
